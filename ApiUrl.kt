@@ -13,6 +13,7 @@ object ApiUrl {
     val login = prod
     val join = prod
     val feed = prod
+    val feedv1 = "${prod}feed/"
     val comment = prod
     val chat = prod
 }
