@@ -29,23 +29,27 @@ class TorangOkHttpClientImpl @Inject constructor(@ApplicationContext val context
     TorangOkhttpClient {
 
     override fun getHttpClient(): OkHttpClient {
-        val httpClient = OkHttpClient.Builder()
-        val logger = HttpLoggingInterceptor()
-        logger.level = HttpLoggingInterceptor.Level.HEADERS
-        logger.level = HttpLoggingInterceptor.Level.BODY
-        httpClient.addInterceptor(logger)
-        httpClient.writeTimeout(10, TimeUnit.SECONDS)
-        httpClient.connectTimeout(10, TimeUnit.SECONDS)
-        httpClient.readTimeout(10, TimeUnit.SECONDS)
-        httpClient.addInterceptor { chain ->
-            val original = chain.request()
-            val request = original.newBuilder()
-                .method(original.method, original.body)
-                .build()
-            chain.proceed(request)
+        val logger = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
         }
-        httpClient.authenticator { route, response -> TODO("Not yet implemented") }
-        return httpClient.build()
+
+        val httpClient = OkHttpClient.Builder()
+            .addInterceptor(logger)
+            .callTimeout(10, TimeUnit.SECONDS) // DNS 조회 시간은 포함 안되기 때문에 더 오래 걸릴 수 있음.
+            .addInterceptor { chain ->
+                val original = chain.request()
+                val request = original.newBuilder()
+                    .method(original.method, original.body)
+                    .build()
+                chain.proceed(request)
+            }
+            .authenticator { route, response ->
+                // TODO: 인증 처리 로직 구현
+                null // 임시로 인증 실패 처리
+            }
+            .build()
+
+        return httpClient
     }
 
     override fun getUnsafeOkHttpClient(): OkHttpClient {
