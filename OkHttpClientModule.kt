@@ -44,7 +44,6 @@ class TorangOkHttpClientImpl @Inject constructor(@ApplicationContext val context
                 .build()
             chain.proceed(request)
         }
-        httpClient.authenticator { route, response -> TODO("Not yet implemented") }
         return httpClient.build()
     }
 
