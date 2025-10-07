@@ -60,12 +60,12 @@ class FakeApiLogin @Inject constructor() {
             }
 
             override suspend fun facebook_login(accessToken: String): Response<String> {
-                TODO("Not yet implemented")
+                return Response.success("")
             }
 
 
             override suspend fun sessionCheck(auth: String): Boolean {
-                TODO("Not yet implemented")
+                return false
             }
         }
     }
