@@ -41,7 +41,7 @@ class FakeApiJoin @Inject constructor() {
     fun create(): ApiJoin {
         return object : ApiJoin {
             override suspend fun checkEmail(email: String, password: String): String {
-                TODO("Not yet implemented")
+                return ""
             }
 
             override suspend fun confirmCode(
@@ -51,7 +51,7 @@ class FakeApiJoin @Inject constructor() {
                 email: String,
                 password: String,
             ): Boolean {
-                TODO("Not yet implemented")
+                return true
             }
 
         }
