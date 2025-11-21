@@ -1,6 +1,7 @@
 package com.sarang.torang.di.torang_network_di
 
 import com.sarang.torang.api.ApiReview
+import com.sarang.torang.api.ApiReviewV1
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,6 +21,16 @@ class ApiReviewModule {
     ): ApiReview {
         return service.create()
     }
+
+    @Provides
+    fun provideApiReviewV1(
+        retrofitModule: RetrofitModule,
+        torangOkHttpClientImpl: TorangOkhttpClient,
+    ): ApiReviewV1 {
+        val url = "${ApiUrl.prod}review/"
+        return retrofitModule
+            .getRetrofit(torangOkHttpClientImpl.getHttpClient(), url).create(ApiReviewV1::class.java)
+    }
 }
 
 
@@ -32,7 +43,7 @@ class ReviewServiceLocalImpl @Inject constructor(
     private val retrofitModule: RetrofitModule
 )
 {
-    private var url = ApiUrl.local
+    private val url = ApiUrl.local
     fun create(): ApiReview
     {
         return retrofitModule
