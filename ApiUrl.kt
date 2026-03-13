@@ -16,4 +16,6 @@ object ApiUrl {
     val feedv1 = "${prod}feed/"
     val comment = prod
     val chat = prod
+
+    val menu = "${prod}api/menu/"
 }
