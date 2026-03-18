@@ -1,7 +1,7 @@
 package com.sarang.torang.di.torang_network_di
 
-import com.sarang.torang.api.feed.ApiFeed
-import com.sarang.torang.api.feed.ApiFeedV1
+import com.sarang.torang.api.ApiFeed
+import com.sarang.torang.api.ApiFeedV1
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
