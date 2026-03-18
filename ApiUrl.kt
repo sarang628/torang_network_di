@@ -10,13 +10,13 @@ object ApiUrl {
     //    val local = "http://192.168.1.10:8081/"
     val prod = "http://sarang628.iptime.org:8081/"
 
-    val alarm = "${local}api/alarm/"
+    val alarm = "${prod}api/alarm/"
     val login = prod
     val join = prod
     val feed = prod
     val feedv1 = "${prod}feed/"
     val comment = prod
-    val chat = "${local}api/chat/"
+    val chat = "${prod}api/chat/"
 
     val menu = "${prod}api/menu/"
 }
