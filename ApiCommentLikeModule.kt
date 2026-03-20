@@ -27,10 +27,9 @@ class ProductApiCommentLike @Inject constructor(
     private val torangOkHttpClientImpl: TorangOkhttpClient,
     private val retrofitModule: RetrofitModule
 ) {
-    private var url = "http://sarang628.iptime.org:8081/"
     fun create(): ApiCommentLike {
         return retrofitModule
-            .getRetrofit(torangOkHttpClientImpl.getHttpClient(), url)
+            .getRetrofit(torangOkHttpClientImpl.getHttpClient(), ApiUrl.commentLike)
             .create(ApiCommentLike::class.java)
     }
 }
