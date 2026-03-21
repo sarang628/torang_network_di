@@ -14,7 +14,7 @@ object ApiUrl {
     val login = prod
     val join = prod
     val feed = prod
-    val feedv1 = "${prod}feed/"
+    val feedv1 = "${local}api/feed/"
     val comment = "${prod}api/comment/"
     val commentLike = "${local}api/commentLike/"
     val chat = "${local}api/chat/"
