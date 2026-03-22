@@ -30,11 +30,10 @@ class ProductApiFilter @Inject constructor(
     private val torangOkHttpClientImpl: TorangOkhttpClient,
     private val retrofitModule: RetrofitModule
 ) {
-    private var url = ApiUrl.prod
     fun create(): ApiFilter {
         return retrofitModule
 //            .getRetrofit(torangOkHttpClientImpl.getUnsafeOkHttpClient(), url)
-            .getRetrofit(torangOkHttpClientImpl.getHttpClient(), url)
+            .getRetrofit(torangOkHttpClientImpl.getHttpClient(), ApiUrl.filter)
             .create(ApiFilter::class.java)
     }
 }
